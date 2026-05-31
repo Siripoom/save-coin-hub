@@ -1670,3 +1670,17 @@
   .safe-products-page .comparison-table { min-width: 780px; }
   .safe-products-page .product-actions { grid-template-columns: 1fr; }
 }
+
+/* === Why Invest Page Utilities === */
+.safe-gradient {
+  background:
+    radial-gradient(circle at 15% 20%, rgba(14, 165, 233, 0.18), transparent 28%),
+    radial-gradient(circle at 85% 10%, rgba(37, 99, 235, 0.16), transparent 30%),
+    linear-gradient(135deg, #eff6ff 0%, #ffffff 46%, #dbeafe 100%);
+}
+.blue-section {
+  background: linear-gradient(135deg, #0f7cf3 0%, #005bd4 50%, #0043a6 100%);
+}
+.card-shadow {
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+}
