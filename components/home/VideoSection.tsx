@@ -1,12 +1,14 @@
+import { Play } from "lucide-react"
+
 const VIDEOS = [
-  { id: 1, emoji: "🎬", title: "รีวิวตู้น้ำ SAFE WATER รุ่นใหม่ 2024", views: "12,543 views" },
-  { id: 2, emoji: "🎬", title: "วิธีดูแลรักษาตู้กาแฟอัตโนมัติ", views: "8,921 views" },
-  { id: 3, emoji: "🎬", title: "รีวิวจากลูกค้าจริง สร้างรายได้จากตู้น้ำ", views: "15,200 views" },
+  { id: 1, title: "รีวิวตู้น้ำ SAFE WATER รุ่นใหม่ 2024", views: "12,543 views" },
+  { id: 2, title: "วิธีดูแลรักษาตู้กาแฟอัตโนมัติ", views: "8,921 views" },
+  { id: 3, title: "รีวิวจากลูกค้าจริง สร้างรายได้จากตู้น้ำ", views: "15,200 views" },
 ]
 
 export default function VideoSection() {
   return (
-    <section className="section" style={{ background: "var(--brand-muted)" }}>
+    <section className="section video-section">
       <div className="safe-container">
         <div className="section-header">
           <div className="section-label">วิดีโอ</div>
@@ -15,21 +17,31 @@ export default function VideoSection() {
         </div>
 
         <div className="video-panel">
-          <div className="video-featured">
-            <div className="video-placeholder">
-              <div style={{ fontSize: "4rem" }}>▶</div>
-              <p>แนะนำ SAFE Vending Solutions</p>
-              <p style={{ opacity: 0.7, fontSize: "0.9rem" }}>รู้จักกับตู้หยอดเหรียญคุณภาพสูงจาก SAFE</p>
+          <div className="featured-video">
+            <div className="video-thumb">
+              <button className="play-btn" aria-label="เล่นวิดีโอ">
+                <Play size={28} fill="currentColor" />
+              </button>
+              <span className="duration">05:24</span>
+              <div className="video-label">
+                <h3>แนะนำ SAFE Vending Solutions</h3>
+              </div>
+            </div>
+            <div className="video-info">
+              <p>รู้จักกับตู้หยอดเหรียญคุณภาพสูงจาก SAFE ครบทุกขั้นตอน ตั้งแต่ติดตั้งจนเริ่มสร้างรายได้</p>
             </div>
           </div>
 
           <div className="video-list">
             {VIDEOS.map((v) => (
               <div key={v.id} className="video-item">
-                <div className="video-thumb">{v.emoji}</div>
+                <div className="video-item-thumb">
+                  <span className="play-mini"><Play size={16} fill="currentColor" /></span>
+                </div>
                 <div>
-                  <p style={{ fontWeight: 600, marginBottom: "4px" }}>{v.title}</p>
-                  <p style={{ fontSize: "0.85rem", color: "var(--brand-primary)" }}>{v.views}</p>
+                  <h3>{v.title}</h3>
+                  <p>{v.views}</p>
+                  <a href="/blog" className="watch">ดูวิดีโอ →</a>
                 </div>
               </div>
             ))}

@@ -1,7 +1,9 @@
+import Image from "next/image"
+
 const PRODUCTS = [
   {
     id: "water",
-    emoji: "💧",
+    image: "/water.png",
     title: "ตู้น้ำดื่มหยอดเหรียญ",
     desc: "ตู้น้ำดื่มอัตโนมัติคุณภาพสูง ระบบกรองน้ำ RO หลายขั้นตอน น้ำสะอาดปลอดภัย ได้มาตรฐาน อย.",
     features: ["ระบบกรอง RO 5 ขั้นตอน", "แสดงผลดิจิทัล LED", "รับชำระเงินสด/QR Code", "แจ้งเตือนอัตโนมัติ"],
@@ -10,7 +12,7 @@ const PRODUCTS = [
   },
   {
     id: "coffee",
-    emoji: "☕",
+    image: "/coffee.png",
     title: "ตู้กาแฟหยอดเหรียญ",
     desc: "ตู้กาแฟอัตโนมัติสูตรพรีเมียม เมล็ดกาแฟคัดพิเศษ บดสดทุกแก้ว รสชาติเข้มข้น หอมกรุ่น",
     features: ["เมล็ดกาแฟพิเศษ 100%", "บดสดทุกแก้ว", "เมนูหลากหลาย 10+ รายการ", "ทำความสะอาดอัตโนมัติ"],
@@ -19,7 +21,7 @@ const PRODUCTS = [
   },
   {
     id: "ice",
-    emoji: "🧊",
+    image: "/ice.png",
     title: "ตู้น้ำแข็งหยอดเหรียญ",
     desc: "ตู้น้ำแข็งอัตโนมัติ น้ำแข็งสะอาด ปลอดภัย ผลิตจากน้ำกรอง RO ความจุสูง เหมาะสำหรับทุกพื้นที่",
     features: ["น้ำแข็งสะอาดปลอดภัย", "ความจุ 50 กก./วัน", "ระบบทำความเย็นประหยัดไฟ", "เลือกปริมาณได้"],
@@ -41,7 +43,15 @@ export default function ProductsSection() {
         <div className="product-grid">
           {PRODUCTS.map((p) => (
             <div key={p.id} className="card">
-              <div className={`mini-machine ${p.id}`}>{p.emoji}</div>
+              <div className={`product-image ${p.id}`}>
+                <Image
+                  src={p.image}
+                  alt={p.title}
+                  width={320}
+                  height={320}
+                  sizes="(max-width: 720px) 100vw, 33vw"
+                />
+              </div>
               <h3>{p.title}</h3>
               <p>{p.desc}</p>
               <ul className="feature-list">

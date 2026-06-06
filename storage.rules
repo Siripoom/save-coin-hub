@@ -1,0 +1,12 @@
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Uploads happen server-side via the Admin SDK. Public image URLs carry a
+    // firebaseStorageDownloadTokens value, which grants access independently of these rules.
+    // Therefore deny all direct (rules-governed) client access.
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

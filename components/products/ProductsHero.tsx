@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 
 export default function ProductsHero() {
   return (
@@ -23,11 +24,15 @@ export default function ProductsHero() {
           </div>
         </div>
 
-        <div className="hero-products" aria-label="SAFE Product Mockup">
-          <div className="hero-base" />
-          <div className="hero-product-card water"><strong>SAFE<br />WATER</strong></div>
-          <div className="hero-product-card coffee"><strong>SAFE<br />COFFEE</strong></div>
-          <div className="hero-product-card ice"><strong>SAFE<br />ICE</strong></div>
+        <div className="hero-visual">
+          <Image
+            src="/hero.png"
+            alt="ตู้หยอดเหรียญ SAFE — ตู้น้ำ ตู้กาแฟ และตู้น้ำแข็ง"
+            width={1448}
+            height={1086}
+            sizes="(max-width: 980px) 100vw, 50vw"
+            className="hero-image"
+          />
         </div>
       </div>
     </section>

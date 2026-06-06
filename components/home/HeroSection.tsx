@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 export default function HeroSection() {
   return (
     <section className="hero">
@@ -19,28 +21,16 @@ export default function HeroSection() {
           </div>
         </div>
 
-        <div className="hero-visual" aria-label="ภาพจำลองตู้ SAFE">
-          <div className="machine water">
-            <div className="machine-title">SAFE<br />WATER</div>
-            <div className="machine-screen">💧</div>
-            <div className="machine-dots">
-              <span /><span /><span /><span /><span /><span />
-            </div>
-          </div>
-          <div className="machine coffee">
-            <div className="machine-title">SAFE<br />COFFEE</div>
-            <div className="machine-screen">☕</div>
-            <div className="machine-dots">
-              <span /><span /><span /><span /><span /><span />
-            </div>
-          </div>
-          <div className="machine ice">
-            <div className="machine-title">SAFE<br />ICE</div>
-            <div className="machine-screen">🧊</div>
-            <div className="machine-dots">
-              <span /><span /><span /><span /><span /><span />
-            </div>
-          </div>
+        <div className="hero-visual">
+          <Image
+            src="/hero.png"
+            alt="ตู้หยอดเหรียญอัตโนมัติ SAFE — ตู้น้ำ ตู้กาแฟ และตู้น้ำแข็ง"
+            width={1448}
+            height={1086}
+            priority
+            sizes="(max-width: 980px) 100vw, 50vw"
+            className="hero-image"
+          />
         </div>
       </div>
     </section>

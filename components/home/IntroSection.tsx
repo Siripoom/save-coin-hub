@@ -3,7 +3,7 @@ export default function IntroSection() {
     <section className="section">
       <div className="safe-container">
         <div className="intro-grid">
-          <div>
+          <div className="intro-copy">
             <div className="section-label">เกี่ยวกับเรา</div>
             <h2>ผู้นำด้านตู้หยอดเหรียญ<br />อัตโนมัติครบวงจร</h2>
             <p>

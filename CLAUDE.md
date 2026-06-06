@@ -20,18 +20,56 @@ npx next typegen # generate PageProps / LayoutProps / RouteContext type helpers
 
 Next.js 16 + React 19.2 + TypeScript (strict) + Tailwind CSS v4, App Router only.
 
+**Route structure:**
 ```
 app/
-  layout.tsx     # root layout — Geist fonts, Tailwind base classes
-  page.tsx       # home page (Server Component by default)
-  globals.css    # Tailwind v4 imports
-public/          # static assets served at /
-next.config.ts   # NextConfig — currently empty
+  layout.tsx           # root layout — Geist + Kanit fonts, html/body wrapper
+  globals.css          # Tailwind v4 + brand CSS classes
+  (public)/
+    layout.tsx         # wraps all public pages with <Navbar> + <Footer>
+    page.tsx           # home (composes components/home/* sections)
+    products/page.tsx
+    why-invest/page.tsx
+    portfolio/page.tsx
+    blog/page.tsx
+    careers/page.tsx
+    promotions/page.tsx
+components/
+  layout/              # Navbar, Footer (shared chrome)
+  home/                # one component per home page section
+  products/            # one component per products page section
+  why-invest/          # ... same pattern for all other pages
+  portfolio/
+  blog/
+  careers/
+  promotions/
+  ui/                  # shadcn components (currently: button.tsx)
+lib/
+  site-config.ts       # NAV_LINKS, FOOTER_PRODUCTS, CONTACT — single source of truth for nav/footer data
+  utils.ts             # cn() helper (clsx + tailwind-merge)
 ```
 
-Path alias: `@/*` → project root (e.g. `import foo from '@/lib/foo'`).
+**Page composition pattern:** Each page is a Server Component that composes section-level components from `components/<page>/`. Each section component is self-contained (data is hardcoded; no shared state or props between sections). Add new pages by creating `app/(public)/<name>/page.tsx` — the `(public)` layout automatically adds Navbar/Footer.
 
-ESLint is configured with `eslint/config` flat config in `eslint.config.mjs` (not `.eslintrc`). Run via `eslint`, not `next lint`.
+## Styling
+
+**CSS classes from `globals.css` are the primary styling mechanism** — not Tailwind utility classes. The file defines a full design system of reusable CSS classes:
+
+- Layout: `.safe-container` (max 1180px centered), `.section` / `.section-sm` (vertical padding)
+- Typography: `.eyebrow`, `.section-title`, `.section-desc`
+- Buttons: `.btn`, `.btn-primary`, `.btn-outline`, `.btn-line`
+- Cards: `.stat-card`, `.card`, `.feature-card`, `.product-card`
+- Page-specific prefixed classes: `.safe-products-page .products-hero`, etc.
+
+Brand tokens (in `:root`): `--brand-primary` (#0ea5e9), `--primary-dark`, `--primary-deep`, `--blue`, `--brand-muted`, `--brand-border`, `--brand-radius`.
+
+Use these CSS classes when building new sections. Tailwind utilities supplement where no class exists. The `cn()` helper from `@/lib/utils` merges class strings.
+
+**shadcn** is configured with the `base-nova` style and `@base-ui/react` primitives (not Radix). Add components via `npx shadcn add <component>`. Icon library: `lucide-react`.
+
+**Fonts:** Kanit (Thai/Latin, weights 300–800) is the default `--font-sans` and `--font-heading`. Geist Mono is the monospace font. Both are loaded in `app/layout.tsx`.
+
+**Remote images:** Only `images.unsplash.com` is whitelisted in `next.config.ts`. All current visuals are CSS-rendered (no real product images).
 
 ## Next.js 16 breaking changes vs older versions
 

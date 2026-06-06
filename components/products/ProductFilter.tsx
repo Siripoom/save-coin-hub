@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 
-const CATEGORIES = ["ทั้งหมด", "ตู้น้ำ", "ตู้กาแฟ", "ตู้น้ำแข็ง", "สินค้าอื่น ๆ"]
+const CATEGORIES = ["ทั้งหมด", "ตู้น้ำ", "ตู้กาแฟ", "ตู้น้ำแข็ง"]
 
 export default function ProductFilter() {
   const [active, setActive] = useState("ทั้งหมด")

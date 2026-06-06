@@ -1,61 +1,23 @@
-const PROMOS = [
-  {
-    gradient: "from-blue-700 to-sky-400",
-    status: "กำลังใช้งาน", statusColor: "bg-green-500",
-    eyebrow: "ประหยัดตั้งแต่วันแรก",
-    headline: "ติดตั้งฟรี!\n0 บาท",
-    title: "ติดตั้งฟรี! ทุกตู้",
-    desc: "ฟรีค่าติดตั้งและเดินระบบทั่วประเทศ สำหรับลูกค้าที่เริ่มต้นกับ SAFE",
-    start: "1 พ.ค. 2567", end: "31 ธ.ค. 2567", expired: false,
-  },
-  {
-    gradient: "from-blue-800 to-blue-500",
-    status: "กำลังใช้งาน", statusColor: "bg-green-500",
-    eyebrow: "สำหรับผู้เริ่มต้นธุรกิจ",
-    headline: "ผ่อนสบาย\n0% สูงสุด 10 เดือน",
-    title: "ผ่อนสบาย 0% สูงสุด 10 เดือน",
-    desc: "แบ่งชำระง่าย ดอกเบี้ย 0% สำหรับรุ่นที่ร่วมรายการ",
-    start: "1 พ.ค. 2567", end: "30 มิ.ย. 2567", expired: false,
-  },
-  {
-    gradient: "from-sky-500 to-blue-700",
-    status: "กำลังใช้งาน", statusColor: "bg-green-500",
-    eyebrow: "เฉพาะรุ่นที่ร่วมรายการ",
-    headline: "ลดทันที\nสูงสุด 15%",
-    title: "ลดทันทีสูงสุด 15%",
-    desc: "ส่วนลดพิเศษสำหรับตู้สินค้าและแพ็กเกจที่กำหนด",
-    start: "1 พ.ค. 2567", end: "30 มิ.ย. 2567", expired: false,
-  },
-  {
-    gradient: "from-blue-600 to-sky-300",
-    status: "กำลังใช้งาน", statusColor: "bg-green-500",
-    eyebrow: "",
-    headline: "แพ็กเกจสุดคุ้ม\nซื้อ 2 ตู้ขึ้นไป รับส่วนลดเพิ่ม",
-    title: "แพ็กเกจซื้อ 2 ตู้ขึ้นไป",
-    desc: "เหมาะสำหรับเจ้าของพื้นที่ที่ต้องการติดตั้งหลายจุด",
-    start: "1 พ.ค. 2567", end: "31 ส.ค. 2567", expired: false,
-  },
-  {
-    gradient: "from-blue-700 to-cyan-500",
-    status: "กำลังใช้งาน", statusColor: "bg-green-500",
-    eyebrow: "",
-    headline: "เปิดร้านใหม่\nรับเครดิตน้ำแข็ง 5,000 บาท",
-    title: "เปิดร้านใหม่ รับเครดิตน้ำแข็ง 5,000 บาท",
-    desc: "สำหรับลูกค้าใหม่ที่ติดตั้งตู้น้ำแข็ง SAFE ICE",
-    start: "1 พ.ค. 2567", end: "31 ก.ค. 2567", expired: false,
-  },
-  {
-    gradient: "from-slate-700 to-slate-400",
-    status: "หมดเขตแล้ว", statusColor: "bg-slate-800",
-    eyebrow: "",
-    headline: "โปรพิเศษ\nวันแรงงาน\nลดสูงสุด 10%",
-    title: "โปรพิเศษวันแรงงาน",
-    desc: "โปรโมชันย้อนหลัง พร้อมของแถมพิเศษ",
-    start: "1 เม.ย. 2567", end: "30 เม.ย. 2567", expired: true,
-  },
-]
+import { getVisiblePromotions, promoStatusView, formatThaiDate } from "@/lib/data/public-content"
 
-export default function PromotionsGrid() {
+export default async function PromotionsGrid() {
+  const visible = await getVisiblePromotions()
+  const PROMOS = visible.map((p) => {
+    const sv = promoStatusView(p.status)
+    return {
+      gradient: p.gradient ?? "from-blue-700 to-sky-400",
+      status: sv.label,
+      statusColor: sv.color,
+      eyebrow: p.eyebrow ?? "",
+      headline: p.headline ?? p.title,
+      title: p.title,
+      desc: p.description,
+      start: formatThaiDate(p.startDate),
+      end: formatThaiDate(p.endDate),
+      expired: sv.expired,
+    }
+  })
+
   return (
     <section className="mx-auto max-w-7xl px-6 pb-12 pt-6 lg:px-8">
       <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">

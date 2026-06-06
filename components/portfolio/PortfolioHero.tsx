@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 
 export default function PortfolioHero() {
   return (
@@ -22,10 +23,15 @@ export default function PortfolioHero() {
           </div>
         </div>
 
-        <div className="hero-machine-wrap" aria-hidden="true">
-          <div className="machine-card machine-water"><strong>SAFE<br />WATER</strong></div>
-          <div className="machine-card machine-coffee"><strong>SAFE<br />COFFEE</strong></div>
-          <div className="machine-card machine-ice"><strong>SAFE<br />ICE</strong></div>
+        <div className="hero-visual">
+          <Image
+            src="/hero.png"
+            alt="ผลงานติดตั้งตู้หยอดเหรียญ SAFE — ตู้น้ำ ตู้กาแฟ และตู้น้ำแข็ง"
+            width={1448}
+            height={1086}
+            sizes="(max-width: 980px) 100vw, 50vw"
+            className="hero-image"
+          />
         </div>
       </div>
     </section>

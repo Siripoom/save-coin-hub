@@ -1,20 +1,26 @@
 "use client"
 
 import { useState } from "react"
+import type { JobPosting } from "@/lib/admin/types"
 
 const FILTERS = ["ทั้งหมด", "งานประจำ", "พาร์ทไทม์", "Online", "Offline"]
 
-const JOBS = [
-  { icon: "📊", title: "เจ้าหน้าที่การตลาด", tags: ["Full time", "Offline"], dept: "แผนกการตลาด", desc: "วางแผนและดำเนินงานด้านการตลาดออนไลน์และออฟไลน์ เพื่อสร้างการรับรู้และเพิ่มยอดขายให้บริษัท" },
-  { icon: "🗂️", title: "แอดมินประสานงาน", tags: ["Full time", "Online"], dept: "แผนกประสานงาน", desc: "ดูแลการติดต่อประสานงานภายในองค์กรและลูกค้า จัดการเอกสารและข้อมูลต่าง ๆ ให้เป็นระบบ" },
-  { icon: "🔧", title: "ช่างเทคนิคติดตั้ง", tags: ["Full time", "Offline"], dept: "แผนกบริการและติดตั้ง", desc: "ติดตั้งและบำรุงรักษาตู้จำหน่ายสินค้าอัตโนมัติ ตรวจสอบระบบ และให้บริการหน้างาน" },
-  { icon: "🤝", title: "ฝ่ายขาย", tags: ["Full time", "Offline"], dept: "แผนกฝ่ายขาย", desc: "นำเสนอสินค้าและบริการ ดูแลลูกค้า และปิดการขาย เพื่อบรรลุเป้าหมายของบริษัท" },
-  { icon: "🎧", title: "เจ้าหน้าที่บริการลูกค้า", tags: ["Full time", "Online"], dept: "แผนกบริการลูกค้า", desc: "ตอบคำถาม ให้คำแนะนำ และแก้ไขปัญหาลูกค้าผ่านช่องทางต่าง ๆ อย่างรวดเร็วและเป็นมืออาชีพ" },
-  { icon: "🎬", title: "คอนเทนต์ครีเอเตอร์", tags: ["Part time", "Online"], dept: "แผนกการตลาด", desc: "สร้างสรรค์คอนเทนต์สำหรับสื่อออนไลน์ วิดีโอ และกราฟิก เพื่อสื่อสารแบรนด์ให้เข้าถึงกลุ่มเป้าหมาย" },
-]
+// Maps a filter pill to a tag substring the job must contain to match
+const FILTER_TAG: Record<string, string> = {
+  "งานประจำ": "full",
+  "พาร์ทไทม์": "part",
+  "Online": "online",
+  "Offline": "offline",
+}
 
-export default function CareersJobs() {
+export default function CareersJobs({ jobs }: { jobs: JobPosting[] }) {
   const [active, setActive] = useState("ทั้งหมด")
+
+  const JOBS = jobs.filter((job) => {
+    if (active === "ทั้งหมด") return true
+    const needle = FILTER_TAG[active]
+    return job.tags.some((t) => t.toLowerCase().includes(needle))
+  })
 
   return (
     <section className="c-section" id="jobs">

@@ -5,6 +5,8 @@ import PromotionDetail from "@/components/promotions/PromotionDetail"
 import PromotionsWhySafe from "@/components/promotions/PromotionsWhySafe"
 import PromotionsCta from "@/components/promotions/PromotionsCta"
 
+export const dynamic = "force-dynamic"
+
 export default function PromotionsPage() {
   return (
     <main>

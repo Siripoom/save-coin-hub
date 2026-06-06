@@ -4,13 +4,17 @@ import CareersJobs from "@/components/careers/CareersJobs"
 import CareersApplyForm from "@/components/careers/CareersApplyForm"
 import CareersWhyJoin from "@/components/careers/CareersWhyJoin"
 import CareersCta from "@/components/careers/CareersCta"
+import { getPublishedJobPostings } from "@/lib/data/public-content"
 
-export default function CareersPage() {
+export const dynamic = "force-dynamic"
+
+export default async function CareersPage() {
+  const jobs = await getPublishedJobPostings()
   return (
     <main className="safe-careers-page">
       <CareersHero />
       <CareersWorkCulture />
-      <CareersJobs />
+      <CareersJobs jobs={jobs} />
       <CareersApplyForm />
       <CareersWhyJoin />
       <CareersCta />

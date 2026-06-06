@@ -1,11 +1,15 @@
-const ARTICLES = [
-  { id: 1, cat: "ธุรกิจ", title: "5 เหตุผลที่ตู้น้ำหยอดเหรียญยังเป็นธุรกิจที่น่าลงทุนใน 2024", date: "15 ม.ค. 2024" },
-  { id: 2, cat: "เทคโนโลยี", title: "เทคโนโลยีใหม่ในตู้กาแฟอัตโนมัติ ทำไมลูกค้าถึงชอบ", date: "22 ม.ค. 2024" },
-  { id: 3, cat: "การลงทุน", title: "วิธีเลือกทำเลวางตู้หยอดเหรียญให้ได้กำไรสูงสุด", date: "1 ก.พ. 2024" },
-  { id: 4, cat: "แนะนำ", title: "ดูแลรักษาตู้น้ำอย่างไรให้อายุการใช้งานยาวนาน", date: "8 ก.พ. 2024" },
-]
+import { getPublishedPosts, formatThaiDate } from "@/lib/data/public-content"
 
-export default function ArticlesSection() {
+export default async function ArticlesSection() {
+  const posts = await getPublishedPosts()
+  const ARTICLES = posts.slice(0, 3).map((p) => ({
+    id: p.id,
+    cat: p.category,
+    title: p.title,
+    excerpt: p.excerpt,
+    date: formatThaiDate(p.publishedAt),
+  }))
+
   return (
     <section className="section">
       <div className="safe-container">
@@ -17,18 +21,19 @@ export default function ArticlesSection() {
 
         <div className="article-grid">
           {ARTICLES.map((a) => (
-            <div key={a.id} className="article-card">
-              <div className="article-img">📰</div>
+            <a key={a.id} href="/blog" className="card article-card">
+              <div className="article-thumb" />
               <div className="article-body">
-                <span className="badge">{a.cat}</span>
+                <span className="article-cat">{a.cat}</span>
                 <h3>{a.title}</h3>
+                <p className="article-excerpt">{a.excerpt}</p>
                 <p className="article-date">{a.date}</p>
               </div>
-            </div>
+            </a>
           ))}
         </div>
 
-        <div style={{ textAlign: "center", marginTop: "48px" }}>
+        <div style={{ textAlign: "center", marginTop: "32px" }}>
           <a href="/blog" className="btn btn-outline">อ่านบทความทั้งหมด →</a>
         </div>
       </div>

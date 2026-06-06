@@ -1,3 +1,5 @@
+import Image from "next/image"
+
 export default function WhyInvestHero() {
   return (
     <section className="safe-gradient relative overflow-hidden">
@@ -52,25 +54,14 @@ export default function WhyInvestHero() {
             </ul>
           </div>
 
-          <div className="bg-white/70 backdrop-blur rounded-[2rem] p-6 card-shadow border border-white">
-            <div className="grid grid-cols-3 gap-4 items-end">
-              <div className="bg-gradient-to-b from-blue-500 to-blue-700 rounded-3xl h-80 shadow-xl flex flex-col items-center justify-between p-4 text-white">
-                <div className="text-center"><p className="font-bold text-xl">SAFE</p><p className="text-sm">WATER</p></div>
-                <div className="w-20 h-28 rounded-2xl bg-white/80" />
-                <p className="text-xs bg-white/20 px-3 py-1 rounded-full">ตู้น้ำ</p>
-              </div>
-              <div className="bg-gradient-to-b from-slate-800 to-slate-950 rounded-3xl h-96 shadow-xl flex flex-col items-center justify-between p-4 text-white">
-                <div className="text-center"><p className="font-bold text-xl">SAFE</p><p className="text-sm">COFFEE</p></div>
-                <div className="w-20 h-20 rounded-full bg-amber-100" />
-                <p className="text-xs bg-white/20 px-3 py-1 rounded-full">ตู้กาแฟ</p>
-              </div>
-              <div className="bg-gradient-to-b from-sky-400 to-blue-700 rounded-3xl h-80 shadow-xl flex flex-col items-center justify-between p-4 text-white">
-                <div className="text-center"><p className="font-bold text-xl">SAFE</p><p className="text-sm">ICE</p></div>
-                <div className="w-20 h-28 rounded-2xl bg-white/80" />
-                <p className="text-xs bg-white/20 px-3 py-1 rounded-full">ตู้น้ำแข็ง</p>
-              </div>
-            </div>
-          </div>
+          <Image
+            src="/hero.png"
+            alt="ตู้หยอดเหรียญ SAFE — ตู้น้ำ ตู้กาแฟ และตู้น้ำแข็ง"
+            width={1448}
+            height={1086}
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            className="w-full h-auto rounded-[2rem] shadow-xl"
+          />
         </div>
       </div>
     </section>

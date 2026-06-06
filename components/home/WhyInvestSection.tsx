@@ -1,10 +1,12 @@
+import { TrendingUp, MapPin, Smartphone, Wrench, Package, BarChart3 } from 'lucide-react'
+
 const FEATURES = [
-  { icon: "💰", title: "ROI สูง คืนทุนไว", desc: "คืนทุนภายใน 12-18 เดือน กำไรสูงถึง 60-80% ต่อปี ด้วยต้นทุนการดำเนินงานที่ต่ำ" },
-  { icon: "🏪", title: "ติดตั้งได้ทุกพื้นที่", desc: "หอพัก คอนโด ตลาด โรงงาน สถานีบริการน้ำมัน ทุกพื้นที่ที่มีคนสัญจร" },
-  { icon: "📱", title: "ระบบจัดการออนไลน์", desc: "ติดตามยอดขาย เติมเงิน ตรวจสอบสถานะเครื่องได้ทุกที่ทุกเวลาผ่านแอปพลิเคชัน" },
-  { icon: "🛠️", title: "บริการครบวงจร", desc: "ติดตั้ง อบรม ซ่อมบำรุง และสนับสนุนตลอด 24/7 ด้วยทีมช่างมืออาชีพ" },
-  { icon: "🔧", title: "อะไหล่ครบ พร้อมส่ง", desc: "สต็อกอะไหล่พร้อมเสมอ ส่งถึงมือภายใน 24 ชั่วโมง ไม่ต้องกังวลเรื่องการซ่อมแซม" },
-  { icon: "📈", title: "ตลาดเติบโตต่อเนื่อง", desc: "ตลาดตู้หยอดเหรียญไทยเติบโต 15% ต่อปี โอกาสทางธุรกิจยังเปิดกว้าง" },
+  { Icon: TrendingUp, title: "ROI สูง คืนทุนไว", desc: "คืนทุนภายใน 12-18 เดือน กำไรสูงถึง 60-80% ต่อปี ด้วยต้นทุนการดำเนินงานที่ต่ำ" },
+  { Icon: MapPin,     title: "ติดตั้งได้ทุกพื้นที่", desc: "หอพัก คอนโด ตลาด โรงงาน สถานีบริการน้ำมัน ทุกพื้นที่ที่มีคนสัญจร" },
+  { Icon: Smartphone, title: "ระบบจัดการออนไลน์", desc: "ติดตามยอดขาย เติมเงิน ตรวจสอบสถานะเครื่องได้ทุกที่ทุกเวลาผ่านแอปพลิเคชัน" },
+  { Icon: Wrench,     title: "บริการครบวงจร", desc: "ติดตั้ง อบรม ซ่อมบำรุง และสนับสนุนตลอด 24/7 ด้วยทีมช่างมืออาชีพ" },
+  { Icon: Package,    title: "อะไหล่ครบ พร้อมส่ง", desc: "สต็อกอะไหล่พร้อมเสมอ ส่งถึงมือภายใน 24 ชั่วโมง ไม่ต้องกังวลเรื่องการซ่อมแซม" },
+  { Icon: BarChart3,  title: "ตลาดเติบโตต่อเนื่อง", desc: "ตลาดตู้หยอดเหรียญไทยเติบโต 15% ต่อปี โอกาสทางธุรกิจยังเปิดกว้าง" },
 ]
 
 export default function WhyInvestSection() {
@@ -20,14 +22,14 @@ export default function WhyInvestSection() {
         <div className="why-grid">
           {FEATURES.map((f) => (
             <div key={f.title} className="feature-card">
-              <div className="feature-icon">{f.icon}</div>
+              <div className="feature-icon"><f.Icon size={22} /></div>
               <h3>{f.title}</h3>
               <p>{f.desc}</p>
             </div>
           ))}
         </div>
 
-        <div style={{ textAlign: "center", marginTop: "48px" }}>
+        <div style={{ textAlign: "center", marginTop: "32px" }}>
           <a href="/why-invest" className="btn btn-primary">อ่านเพิ่มเติม →</a>
         </div>
       </div>

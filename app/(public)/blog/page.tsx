@@ -4,6 +4,8 @@ import BlogList from "@/components/blog/BlogList"
 import BlogDetail from "@/components/blog/BlogDetail"
 import BlogNewsletter from "@/components/blog/BlogNewsletter"
 
+export const dynamic = "force-dynamic"
+
 export default function BlogPage() {
   return (
     <main className="safe-blog-page">

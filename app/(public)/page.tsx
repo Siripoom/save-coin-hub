@@ -9,6 +9,9 @@ import VideoSection from "@/components/home/VideoSection"
 import ArticlesSection from "@/components/home/ArticlesSection"
 import CtaSection from "@/components/home/CtaSection"
 
+// Content comes from Firestore at request time; opt out of build-time static generation.
+export const dynamic = "force-dynamic"
+
 export default function HomePage() {
   return (
     <main>

@@ -1,10 +1,25 @@
-const PORTFOLIOS = [
-  { id: 1, emoji: "🏢", location: "คอนโดมิเนียม The Base", place: "กรุงเทพมหานคร", machines: "ตู้น้ำ 3 เครื่อง + ตู้กาแฟ 1 เครื่อง" },
-  { id: 2, emoji: "🏭", location: "โรงงานอุตสาหกรรม", place: "นิคมอุตสาหกรรมอมตะซิตี้", machines: "ตู้น้ำ 10 เครื่อง + ตู้น้ำแข็ง 5 เครื่อง" },
-  { id: 3, emoji: "⛽", location: "ปั๊มน้ำมัน PTT", place: "จังหวัดนนทบุรี", machines: "ตู้น้ำ 2 เครื่อง + ตู้กาแฟ 2 เครื่อง + ตู้น้ำแข็ง 1 เครื่อง" },
-]
+import { getPublishedPortfolio, portfolioTypeLabel } from "@/lib/data/public-content"
+import type { PortfolioItem } from "@/lib/admin/types"
+import { Droplet, Coffee, Snowflake, Building2, MapPin, type LucideIcon } from "lucide-react"
 
-export default function PortfolioSection() {
+const TYPE_ICON: Record<PortfolioItem["type"], LucideIcon> = {
+  water: Droplet,
+  coffee: Coffee,
+  ice: Snowflake,
+  mixed: Building2,
+}
+
+export default async function PortfolioSection() {
+  const portfolio = await getPublishedPortfolio()
+  const PORTFOLIOS = portfolio.slice(0, 3).map((p) => ({
+    id: p.id,
+    Icon: TYPE_ICON[p.type],
+    label: portfolioTypeLabel(p.type),
+    location: p.name,
+    place: p.location,
+    machines: `${portfolioTypeLabel(p.type)} ${p.machineCount} เครื่อง`,
+  }))
+
   return (
     <section className="section">
       <div className="safe-container">
@@ -16,16 +31,20 @@ export default function PortfolioSection() {
 
         <div className="portfolio-grid">
           {PORTFOLIOS.map((p) => (
-            <div key={p.id} className="card">
-              <div className="thumb">{p.emoji}</div>
-              <h3>{p.location}</h3>
-              <p style={{ color: "var(--brand-primary)", fontWeight: 600 }}>📍 {p.place}</p>
-              <p>{p.machines}</p>
+            <div key={p.id} className="card portfolio-card">
+              <div className="thumb">
+                <span className="thumb-badge"><p.Icon size={15} /> {p.label}</span>
+              </div>
+              <div className="portfolio-body">
+                <h3>{p.location}</h3>
+                <p className="portfolio-place"><MapPin size={15} /> {p.place}</p>
+                <p>{p.machines}</p>
+              </div>
             </div>
           ))}
         </div>
 
-        <div style={{ textAlign: "center", marginTop: "48px" }}>
+        <div style={{ textAlign: "center", marginTop: "32px" }}>
           <a href="/portfolio" className="btn btn-outline">ดูผลงานทั้งหมด →</a>
         </div>
       </div>

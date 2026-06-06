@@ -1,3 +1,5 @@
+import Image from "next/image"
+
 export default function PromotionsHero() {
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-sky-50 via-white to-sky-100">
@@ -29,31 +31,14 @@ export default function PromotionsHero() {
         </div>
 
         <div className="relative">
-          <div className="rounded-[2rem] border border-blue-100 bg-white/70 p-6 shadow-2xl shadow-blue-100 backdrop-blur">
-            <div className="grid grid-cols-3 items-end gap-4">
-              <div className="rounded-3xl bg-gradient-to-b from-blue-500 to-blue-700 p-4 text-center text-white shadow-xl">
-                <div className="mb-3 text-sm font-bold">SAFE WATER</div>
-                <div className="mx-auto h-56 rounded-2xl bg-white/90 p-3">
-                  <div className="h-full rounded-xl border-2 border-blue-200 bg-gradient-to-b from-sky-100 to-white" />
-                </div>
-                <div className="mt-3 text-xs">ตู้น้ำ</div>
-              </div>
-              <div className="rounded-3xl bg-gradient-to-b from-stone-800 to-black p-4 text-center text-white shadow-xl">
-                <div className="mb-3 text-sm font-bold">SAFE COFFEE</div>
-                <div className="mx-auto h-64 rounded-2xl bg-stone-900 p-3">
-                  <div className="h-full rounded-xl border border-amber-700 bg-gradient-to-b from-stone-700 to-stone-950" />
-                </div>
-                <div className="mt-3 text-xs">ตู้กาแฟ</div>
-              </div>
-              <div className="rounded-3xl bg-gradient-to-b from-sky-400 to-blue-700 p-4 text-center text-white shadow-xl">
-                <div className="mb-3 text-sm font-bold">SAFE ICE</div>
-                <div className="mx-auto h-60 rounded-2xl bg-white/90 p-3">
-                  <div className="h-full rounded-xl border-2 border-sky-200 bg-gradient-to-b from-blue-50 to-white" />
-                </div>
-                <div className="mt-3 text-xs">ตู้น้ำแข็ง</div>
-              </div>
-            </div>
-          </div>
+          <Image
+            src="/hero.png"
+            alt="โปรโมชั่นตู้หยอดเหรียญ SAFE — ตู้น้ำ ตู้กาแฟ และตู้น้ำแข็ง"
+            width={1448}
+            height={1086}
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            className="w-full h-auto rounded-[2rem] shadow-2xl shadow-blue-100"
+          />
         </div>
       </div>
     </section>

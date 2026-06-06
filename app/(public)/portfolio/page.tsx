@@ -5,6 +5,8 @@ import PortfolioDetail from "@/components/portfolio/PortfolioDetail"
 import PortfolioStats from "@/components/portfolio/PortfolioStats"
 import PortfolioCta from "@/components/portfolio/PortfolioCta"
 
+export const dynamic = "force-dynamic"
+
 export default function PortfolioPage() {
   return (
     <main className="safe-portfolio-page">
